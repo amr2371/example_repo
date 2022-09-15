@@ -1,0 +1,61 @@
+---
+title: "Simple document"
+output: html_document
+---
+```{r, message=FALSE}
+library(tidyverse)
+```
+
+
+I'm an R Markdown document! 
+
+# Section 1
+
+Here's a **code chunk** that samples from 
+a _normal distribution_:
+
+```{r}
+samp = rnorm(100)
+length(samp)
+```
+
+# Section 2
+
+I can take the mean of the sample, too!
+The mean is `r mean(samp)`.
+`r round(mean(samp),2)` #this will round to 2 decimal places
+
+# Section 3
+
+## Plot from last time
+
+This is going to make a plot! First I generate a dataframe, then use `ggplot` to make a scatterplot.
+(Option command i to make code chunk)
+
+```{r, chunk_scatterplot, echo=FALSE}
+plot_df=
+  tibble(
+    x=rnorm(n=1000),
+    y=1 + 2 * x + rnorm(n=1000)
+  )
+ggplot(plot_df, aes(x=x,y=y)) + geom_point()
+```
+```{r chunk_histogram}
+ggplot(plot_df,aes(x=x)) + geom_histogram()
+```
+
+### Plot for learning assessment
+
+```{r, chunk_assessment}
+assessment_df=
+  tibble(
+    num_var=rnorm(n=500, mean=1),
+    num_var_pos=num_var >0,
+    abs_num_var=abs(num_var)
+  )
+ggplot(assessment_df,aes(x=abs_num_var)) + geom_histogram()
+```
+
+Here's a list:
+* List item 1
+* List item 2
